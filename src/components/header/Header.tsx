@@ -3,16 +3,20 @@ import { ArrowLeftIcon, SignalIcon, FolderPlusIcon, PlusIcon, XMarkIcon } from '
 import { useNavigate } from 'react-router-dom';
 import AddItem from '../addItems/AddItem';
 
-const Header = () => {
+interface HeaderProps {}
+
+const Header: React.FC<HeaderProps> = () => {
   const navigate = useNavigate();
-  const [openAddItem, setOpenAddItem] = useState(false)
+  const [openAddItem, setOpenAddItem] = useState<boolean>(false);
 
   const handleOpenClick = () => {
-    setOpenAddItem(true)
-  }
+    setOpenAddItem(true);
+  };
+
   const handleCloseClick = () => {
-    setOpenAddItem(false)
-  }
+    setOpenAddItem(false);
+  };
+
 
   return (
     <nav className='h-fit flex flex-col'>
@@ -46,7 +50,7 @@ const Header = () => {
           {openAddItem && (
             <div className='fixed h-full top-0 right-0 left-0 flex items-start justify-end'>
               <div className='flex flex-row w-2/6  bg-white p-4 rounded-lg'>
-                <AddItem onFormSubmit={() => {}} onClose={handleCloseClick}/>
+              <AddItem itemData={itemSelected} onFormSubmit={handleFormSubmit} onClose={handleCloseClick} />
                 <button className="absolute top-3 right-4 shadow-sm shadow-white items-center justify-center border border-gray-400 rounded-full py-1 px-1"
                   onClick={handleCloseClick}>
                   <XMarkIcon className='w-4 h-4 bg-grey-200' />

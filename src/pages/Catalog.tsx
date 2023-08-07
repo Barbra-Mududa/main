@@ -4,20 +4,29 @@ import Layout from '../components/layout/Layout';
 import Items from '../components/requests/Items';
 import projectData from '../data/data';
 
-const Catalog = () => {
-  const [formData, setFormData] = useState([]);
+interface Item {
+  id: string;
+  itemCode: string;
+  item: string;
+  brand: string;
+  unitOfMeasurement: string;
+  unitPrice: string;
+}
+
+const Catalog: React.FC = () => {
+  const [formData, setFormData] = useState<Item[]>([]);
 
   useEffect(() => {
     fetch("/./src/data/data.js")
-    .then((res) => res.json())
-    .then((r) => setFormData(r) )
-    .catch((error) => {
-      console.log('Error fetching', error)
-    });
-    setFormData(projectData)
-  },[])
+      .then((res) => res.json())
+      .then((r) => setFormData(r))
+      .catch((error) => {
+        console.log('Error fetching', error);
+      });
+    setFormData(projectData);
+  }, []);
 
-  const handleDelete = async (e) => {
+  const handleDelete = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const id = e.currentTarget.id;
     await fetch("/./src/data/data.js" + id, {
       method: "DELETE",
@@ -28,12 +37,11 @@ const Catalog = () => {
     setFormData(formData.filter((data) => data.id !== id));
   };
 
-  const handleEdit = (item) => {
+  const handleEdit = (item: Item) => {
     setFormData((prevData) =>
       prevData.map((data) => (data.id === item.id ? item : data))
     );
   };
-
 
   return (
     <Layout>

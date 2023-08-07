@@ -2,27 +2,41 @@ import React, { useState } from 'react';
 import { PencilSquareIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import AddItem from '../addItems/AddItem';
 
-function Items({ formData, handleEdit, handleDelete }) {
-  const [editForm, setEditForm] = useState(false);
-  const [itemSelected, setItemSelected] = useState(null);
+interface Item {
+  id: string;
+  itemCode: string;
+  item: string;
+  brand: string;
+  unitOfMeasurement: string;
+  unitPrice: string;
+}
+
+interface ItemsProps {
+  formData: Item[];
+  handleEdit: (item: Item) => void;
+  handleDelete: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+const Items: React.FC<ItemsProps> = ({ formData, handleEdit, handleDelete }) => {
+  const [editForm, setEditForm] = useState<boolean>(false);
+  const [itemSelected, setItemSelected] = useState<Item | null>(null);
   // eslint-disable-next-line no-unused-vars
-  const [formDat, setFormData] = useState([]);
+  const [formDat, setFormData] = useState<any[]>([]);
 
-
-  const edit = (item) => {
+  const edit = (item: Item) => {
     setItemSelected(item);
     setEditForm(true);
   };
 
-  const handleFormSubmit = (newFormData) => {
+  const handleFormSubmit = (newFormData: any) => {
     setFormData((prevData) =>
       prevData.map((data) => (data.id === newFormData.id ? newFormData : data))
     );
   };
- 
+
   const handleCloseClick = () => {
-    setEditForm(false)
-  }
+    setEditForm(false);
+  };
 
   return (
     <div>
