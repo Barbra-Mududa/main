@@ -1,0 +1,76 @@
+{
+  "items": [
+    {
+      "itemCode": "67",
+      "item": "Pen Red",
+      "brand": "Bic",
+      "unitPrice": "50",
+      "unitOfMeasurement": "Each",
+      "hasThreshold": "true",
+      "id": 1
+    },
+    {
+      "itemCode": "37",
+      "item": "Paper Red",
+      "brand": "Pelikan",
+      "unitPrice": "50",
+      "unitOfMeasurement": "Each",
+      "hasThreshold": "false",
+      "id": 2
+    },
+    {
+      "itemCode": "257427",
+      "item": "Pen Black",
+      "brand": "Kaluma",
+      "unitPrice": 0,
+      "unitOfMeasurement": "Each",
+      "hasThreshold": "true",
+      "id": 3
+    },
+    {
+      "itemCode": "257427",
+      "item": "Pen Black",
+      "brand": "Kaluma",
+      "unitPrice": 0,
+      "unitOfMeasurement": "Each",
+      "hasThreshold": "true",
+      "id": 4
+    },
+    {
+      "itemCode": "257427",
+      "item": "Pen Green",
+      "brand": "Kaluma",
+      "unitPrice": "40",
+      "unitOfMeasurement": "Each",
+      "hasThreshold": "true",
+      "id": 5
+    },
+    {
+      "itemCode": "257427",
+      "item": "Pen Black",
+      "brand": "Kaluma",
+      "unitPrice": 0,
+      "unitOfMeasurement": "Each",
+      "hasThreshold": "true",
+      "id": 6
+    },
+    {
+      "itemCode": "257427",
+      "item": "Pen Red",
+      "brand": "Bic",
+      "unitPrice": "20",
+      "unitOfMeasurement": "",
+      "hasThreshold": "",
+      "id": 7
+    },
+    {
+      "itemCode": "257427",
+      "item": "Pen Green",
+      "brand": "",
+      "unitPrice": "90",
+      "unitOfMeasurement": "Each",
+      "hasThreshold": "false",
+      "id": 8
+    }
+  ]
+}
