@@ -2,46 +2,48 @@ import React, { useEffect, useState } from 'react';
 import { ArrowRightIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import Layout from '../components/layout/Layout';
 import Items from '../components/requests/Items';
-import projectData from '../data/data';
+import data from '../data/data';
 
 interface Item {
-  id: string;
+  id: number;
   itemCode: string;
   item: string;
   brand: string;
-  unitOfMeasurement: string;
   unitPrice: string;
+  unitOfMeasurement: string;
+  hasThreshold?: string;
 }
 
-const Catalog: React.FC = () => {
+const Catalog: React.FC= () => {
   const [formData, setFormData] = useState<Item[]>([]);
 
   useEffect(() => {
     fetch("/./src/data/data.js")
-      .then((res) => res.json())
-      .then((r) => setFormData(r))
-      .catch((error) => {
-        console.log('Error fetching', error);
-      });
-    setFormData(projectData);
-  }, []);
-
-  const handleDelete = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    const id = e.currentTarget.id;
-    await fetch("/./src/data/data.js" + id, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    .then((res) => res.json())
+    .then((r) => setFormData(r) )
+    .catch((error) => {
+      console.log('Error fetching', error)
     });
-    setFormData(formData.filter((data) => data.id !== id));
-  };
+  },[])
+
+  // const handleDelete = async (id: number) => {
+  //   const id = e.currentTarget.id;
+  //   await fetch("http://localhost:3000/items" + id, {
+  //     method: "DELETE",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json"
+  //     },
+  //   });
+  //   setFormData(formData.filter((data) => data.id !== id));
+  // };
 
   const handleEdit = (item: Item) => {
     setFormData((prevData) =>
       prevData.map((data) => (data.id === item.id ? item : data))
     );
   };
+
 
   return (
     <Layout>
@@ -69,7 +71,7 @@ const Catalog: React.FC = () => {
             <div>
               <h3 className='text-base text-sm text-grey/500 mt-4 mb-4'>Showing 2 items </h3>
             </div>
-            <Items formData={formData} handleDelete={handleDelete} handleEdit={handleEdit} />
+            <Items items={formData} handleEdit={handleEdit} />
           </div>
         )}
       </div>
@@ -77,6 +79,4 @@ const Catalog: React.FC = () => {
   );
 }
 
-
 export default Catalog;
-
